@@ -67,5 +67,5 @@
     copyToClipboard(content);
 
     console.log(content);
-    console.log('[INFO] 上述内容已复制到剪切板');
+    console.log(`[INFO] ${ questionId } README 已复制到剪切板`);
 }());
