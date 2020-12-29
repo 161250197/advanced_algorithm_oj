@@ -1,7 +1,7 @@
 ; (function () {
     const card = document.getElementsByClassName('ivu-card')[0];
 
-    const questionId = /problem\/(\d+\-\d+)/.exec(window.location.pathname)[1];
+    const [_, contestId, questionId] = /^\/contest\/([^/]+)\/problem\/([^/]+)$/.exec(window.location.pathname);
 
     const questionName = `# ${ questionId } ${ card.getElementsByClassName('ivu-card-head')[0].innerText }`;
 
@@ -66,6 +66,7 @@
 
     copyToClipboard(content);
 
-    console.log(content);
-    console.log(`[INFO] ${ questionId } README 已复制到剪切板`);
+    console.log({ content });
+    console.log(`[INFO] contestId: ${ contestId } questionId: ${ questionId }`);
+    console.log(`[INFO] README 已复制到剪切板`);
 }());
