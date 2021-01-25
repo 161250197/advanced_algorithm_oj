@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/161250197/oj/issues"
   },
-  "homepage": "https://github.com/161250197/oj#readme"
+  "homepage": "https://github.com/161250197/oj#readme",
+  "devDependencies": {
+    "eslint": "^7.18.0"
+  }
 }
