@@ -4,6 +4,18 @@
 
 ## 说明
 
-在题目页面下运行 [readmeCreator.js](readmeCreator.js) 代码，控制台会打印相关信息，并将生成的README内容复制进粘贴板，自行创建对应文件夹和 md 文件，粘贴内容即可生成题目对应的README文档。
+### readmeCreator `readme 生成脚本`
+
+在题目页面下运行 [readmeCreator.js](readmeCreator.js) 脚本，控制台会打印 `contestId` 和 `questionId` `，并将生成的README内容复制进粘贴板。
 
 ![示例](示例.png)
+
+### folderCreator `folder 生成脚本`
+
+在当前目录下运行 [folderCreator.js](folderCreator.js) 脚本，依次输入参数：
+
+* contestId （如 19）；
+
+* questionId （如1-10）。
+
+即可在对应的 contest 文件夹下新建对应的 question 文件夹，并将 template 目录下的模板文件 [Main.js](template/Main.java) 复制到该文件夹下，并生成空的 README 文件。
