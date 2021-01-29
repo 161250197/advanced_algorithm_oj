@@ -24,12 +24,18 @@ public class Main {
     public String toString() {
         // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
+        builder
+            .append("test: " + this.test + ";\n")
+        ;
         return builder.toString();
     }
     
     void printData() {
         System.out.println(this);
     }
+
+    // TODO 添加属性
+    String test = "test";
 
     // TODO 修改方法名称
     private void dealProblem() {
@@ -44,6 +50,7 @@ public class Main {
 
     private void calResult() {
         // TODO
+        this.printData();
     }
 
     private void printResult() {
