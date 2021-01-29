@@ -53,7 +53,7 @@ public class Main {
         for (int i = 1; i < arrLen; i++) {
             builder.append("," + ints[i]);
         }
-        builder.append(" ];");
+        builder.append(" ]");
         return builder.toString();
     }
     

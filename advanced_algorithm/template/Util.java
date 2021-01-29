@@ -6,7 +6,7 @@ public class Util {
         for (int i = 1; i < arrLen; i++) {
             builder.append("," + ints[i]);
         }
-        builder.append(" ];");
+        builder.append(" ]");
         return builder.toString();
     }
     
@@ -17,7 +17,7 @@ public class Util {
         for (long i = 1; i < arrLen; i++) {
             builder.append("," + longs[i]);
         }
-        builder.append(" ];");
+        builder.append(" ]");
         return builder.toString();
     }
 }
