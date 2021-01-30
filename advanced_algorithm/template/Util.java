@@ -20,4 +20,14 @@ public class Util {
         builder.append(" ]");
         return builder.toString();
     }
+
+    private String createResultNumArrStr(int[] numArr) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(numArr[0]);
+        int arrLen = numArr.length;
+        for (int i = 1; i < arrLen; i++) {
+            builder.append(" " + numArr[i]);
+        }
+        return builder.toString();
+    }
 }
