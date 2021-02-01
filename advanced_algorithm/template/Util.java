@@ -13,8 +13,8 @@ public class Util {
     private String longArrToString(long[] longs) {
         StringBuilder builder = new StringBuilder();
         builder.append("[ " + longs[0]);
-        long arrLen = longs.length;
-        for (long i = 1; i < arrLen; i++) {
+        int arrLen = longs.length;
+        for (int i = 1; i < arrLen; i++) {
             builder.append("," + longs[i]);
         }
         builder.append(" ]");
