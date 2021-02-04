@@ -271,13 +271,13 @@ public class Main {
     }
     
     void reduceRightBottomEmptyL(int row, int col) {
-        if (row >= threeFourthCol || (row >= halfRow && col < oneFourthCol)) {
-            top = halfCol;
-            right = halfRow;
+        if (row >= threeFourthRow || (row >= halfRow && col < oneFourthCol)) {
+            top = halfRow;
+            right = halfCol;
             lType = LType.RIGHT_TOP_EMPTY;
             return;
         }
-        if (col >= threeFourthCol || (col >= halfRow && row < oneFourthRow)) {
+        if (col >= threeFourthCol || (col >= halfCol && row < oneFourthRow)) {
             bottom = halfRow;
             left = halfCol;
             lType = LType.LEFT_BOTTOM_EMPTY;
