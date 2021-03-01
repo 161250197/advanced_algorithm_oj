@@ -156,14 +156,32 @@ public class Main {
         }
     }
 
+    boolean pointsInOneLine(Point[] points) {
+        int pointCount = points.length;
+        for (int i = 0; i < pointCount; i++) {
+            Point p1 = points[i];
+            for (int j = i + 1; j < pointCount; j++) {
+                Point p2 = points[j];
+                for (int k = j + 1; k < pointCount; k++) {
+                    Point p3 = points[k];
+                    int crossProduct = this.calCrossProduct(p1, p2, p3);
+                    if (crossProduct != 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     void printResult() {
         int convexHullPointCount = this.convexHullPoints.size();
-        if (convexHullPointCount < 3) {
+        Point[] convexHullPointArr = new Point[convexHullPointCount];
+        this.convexHullPoints.toArray(convexHullPointArr);
+        if (convexHullPointCount < 3 || this.pointsInOneLine(convexHullPointArr)) {
             System.out.println("-1");
             return;
         }
-        Point[] convexHullPointArr = new Point[convexHullPointCount];
-        this.convexHullPoints.toArray(convexHullPointArr);
         Arrays.sort(convexHullPointArr);
         String result = pointsToString(convexHullPointArr, ", ");
         System.out.println(result);
