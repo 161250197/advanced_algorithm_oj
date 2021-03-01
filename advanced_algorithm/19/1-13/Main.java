@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Main {
     private Scanner scanner;
@@ -51,6 +52,7 @@ public class Main {
     int sum = -1;
     int[] nums = null;
     ArrayList<int[]> resultNumArrList;
+    Set<String> checkedSet;
 
     private void findCertainSumSubArr() {
         loadData();
@@ -60,6 +62,7 @@ public class Main {
 
     private void loadData() {
         this.resultNumArrList = new ArrayList<>();
+        this.checkedSet = new HashSet<>();
 
         String[] numCountAndSumStr = this.scanner.nextLine().split(" ");
         this.numCount = Integer.parseInt(numCountAndSumStr[0]);
@@ -79,37 +82,39 @@ public class Main {
     }
 
     private void findOuterTwoNum(int left, int right) {
-        while (right - left > 2) {
-            int leftNum = this.nums[left];
-            int rightNum = this.nums[right];
-            int minSum = leftNum + this.nums[left + 1] + this.nums[left + 2] + rightNum;
-            if (minSum > this.sum) {
-                right--;
-                continue;
-            }
-            int maxSum = leftNum + this.nums[right - 2] + this.nums[right - 1] + rightNum;
-            if (maxSum < this.sum) {
-                left++;
-                continue;
-            }
-            findInnerTwoNum(left, right);
-            int newLeft = left + 1;
-            while (right - newLeft > 2 && this.nums[newLeft] == leftNum) {
-                newLeft++;
-            }
-            if (right - newLeft > 2) {
-                findInnerTwoNum(newLeft, right);
-            }
-            int newRight = right - 1;
-            while (newRight - left > 2 && this.nums[newRight] == rightNum) {
-                newRight--;
-            }
-            if (newRight - left > 2) {
-                findInnerTwoNum(left, newRight);
-            }
-            left = newLeft;
-            right = newRight;
+        String key = "left: " + left + "; right: " + right;
+        if (right - left <= 2 || this.checkedSet.contains(key)) {
+            return;
         }
+        this.checkedSet.add(key);
+        int leftNum = this.nums[left];
+        int rightNum = this.nums[right];
+        int minSum = leftNum + this.nums[left + 1] + this.nums[left + 2] + rightNum;
+        if (minSum > this.sum) {
+            this.findOuterTwoNum(left, right - 1);
+            return;
+        }
+        int maxSum = leftNum + this.nums[right - 2] + this.nums[right - 1] + rightNum;
+        if (maxSum < this.sum) {
+            this.findOuterTwoNum(left + 1, right);
+            return;
+        }
+
+        this.findInnerTwoNum(left, right);
+
+        int newLeft = left + 1;
+        while (right - newLeft > 2 && this.nums[newLeft] == leftNum) {
+            newLeft++;
+        }
+        this.findOuterTwoNum(newLeft, right);
+
+        int newRight = right - 1;
+        while (newRight - left > 2 && this.nums[newRight] == rightNum) {
+            newRight--;
+        }
+        this.findOuterTwoNum(left, newRight);
+
+        this.findOuterTwoNum(newLeft, newRight);
     }
 
     private void findInnerTwoNum(int left, int right) {
@@ -151,10 +156,27 @@ public class Main {
         return builder.toString();
     }
 
+    private int[][] createSortedNumArrArr() {
+        int resultNumCount = this.resultNumArrList.size();
+        int[][] sortedNumArrArr = new int[resultNumCount][];
+        this.resultNumArrList.toArray(sortedNumArrArr);
+        Arrays.sort(sortedNumArrArr, (arr1, arr2) -> {
+            for (int i = 0; i < 4; i++) {
+                if (arr1[i] != arr2[i]) {
+                    return arr1[i] - arr2[i];
+                }
+            }
+            return 0;
+        });
+        return sortedNumArrArr;
+    }
+
     private void printResult() {
+        int[][] sortedNumArrArr = this.createSortedNumArrArr();
+
         StringBuilder builder = new StringBuilder();
-        for (int[] numArr : this.resultNumArrList) {
-            builder.append(createResultNumArrStr(numArr));
+        for (int[] numArr : sortedNumArrArr) {
+            builder.append(this.createResultNumArrStr(numArr));
         }
         System.out.println(builder.toString());
     }
