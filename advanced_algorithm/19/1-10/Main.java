@@ -86,7 +86,11 @@ public class Main {
 
     private void calResult() {
         this.calBookSum();
-        this.minMaxBookSum = this.calMinMaxBookSum(0, this.bookCount - 1, this.studentCount);
+        this.minMaxBookSum =
+            this.bookCount >= this.studentCount
+                ? this.calMinMaxBookSum(0, this.bookCount - 1, this.studentCount)
+                : -1
+        ;
     }
 
     private void calBookSum() {
