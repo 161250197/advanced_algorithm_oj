@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 const contestFolders = fs.readdirSync(__dirname);
 contestFolders.forEach(contest => {
     const contestPath = path.join(__dirname, contest);
@@ -38,9 +38,9 @@ contestFolders.forEach(contest => {
             console.log(`[WARNING] ${ questionFolder }: 测试用例未生成`);
             return;
         }
-        const test = fs.createWriteStream(path.join(questionFolderPath, "test.txt"));
-        test.write(inContents.join("\n\n"));
-        const answer = fs.createWriteStream(path.join(questionFolderPath, "answer.txt"));
-        answer.write(outContents.join("\n\n"));
+        const test = fs.createWriteStream(path.join(questionFolderPath, 'test.txt'));
+        test.write(inContents.join('\n\n'));
+        const answer = fs.createWriteStream(path.join(questionFolderPath, 'answer.txt'));
+        answer.write(outContents.join('\n\n'));
     });
 });
