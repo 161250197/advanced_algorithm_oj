@@ -12,10 +12,14 @@
 
 ### folderCreator `folder 生成脚本`
 
-在当前目录下运行 [folderCreator.js](folderCreator.js) 脚本，依次输入参数：
+运行 [folderCreator.js](folderCreator.js) 脚本，依次输入参数：
 
 * contestId （如 19）；
 
 * questionId （如1-10）。
+
+~~~
+node .\advanced_algorithm\folde  reator.jsrCreator.js 19 1-10
+~~~
 
 即可在对应的 contest 文件夹下新建对应的 question 文件夹，并将 template 目录下的模板文件 [Main.js](template/Main.java) 复制到该文件夹下，并生成空的 README 文件。
