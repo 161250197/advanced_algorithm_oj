@@ -1,43 +1,34 @@
 public class Util {
-    private String intArrToString(int[] ints) {
-        int arrLen = ints.length;
-        if (arrLen == 0) {
-            return "[]";
+    class ArrToString<T> {
+        String exec(T[] arr) {
+            int arrLen = arr.length;
+            if (arrLen == 0) {
+                return "[]";
+            }
+            StringBuilder builder = new StringBuilder();
+            builder.append("[ " + arr[0]);
+            for (int i = 1; i < arrLen; i++) {
+                builder.append("," + arr[i]);
+            }
+            builder.append(" ]");
+            return builder.toString();
         }
-        StringBuilder builder = new StringBuilder();
-        builder.append("[ " + ints[0]);
-        for (int i = 1; i < arrLen; i++) {
-            builder.append("," + ints[i]);
-        }
-        builder.append(" ]");
-        return builder.toString();
-    }
-    
-    private String longArrToString(long[] longs) {
-        int arrLen = longs.length;
-        if (arrLen == 0) {
-            return "[]";
-        }
-        StringBuilder builder = new StringBuilder();
-        builder.append("[ " + longs[0]);
-        for (int i = 1; i < arrLen; i++) {
-            builder.append("," + longs[i]);
-        }
-        builder.append(" ]");
-        return builder.toString();
     }
 
-    private String stringArrToString(String[] strs) {
-        int arrLen = strs.length;
-        if (arrLen == 0) {
-            return "[]";
+    class MatrixToString<T> {
+        String exec(T[][] matrix) {
+            int arrLen = matrix.length;
+            if (arrLen == 0) {
+                return "[]";
+            }
+            ArrToString arrToString = new ArrToString<T>();
+            StringBuilder builder = new StringBuilder();
+            builder.append("[\n" + arrToString.exec(matrix[0]));
+            for (int i = 1; i < arrLen; i++) {
+                builder.append(",\n" + arrToString.exec(matrix[i]));
+            }
+            builder.append("\n]");
+            return builder.toString();
         }
-        StringBuilder builder = new StringBuilder();
-        builder.append("[ " + strs[0]);
-        for (int i = 1; i < arrLen; i++) {
-            builder.append("," + strs[i]);
-        }
-        builder.append(" ]");
-        return builder.toString();
     }
 }
