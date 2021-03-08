@@ -1,6 +1,9 @@
 public class Util {
     class ArrToString<T> {
         String exec(T[] arr) {
+            if (arr == null) {
+                return "null";
+            }
             int arrLen = arr.length;
             if (arrLen == 0) {
                 return "[]";
@@ -17,6 +20,9 @@ public class Util {
 
     class MatrixToString<T> {
         String exec(T[][] matrix) {
+            if (matrix == null) {
+                return "null";
+            }
             int arrLen = matrix.length;
             if (arrLen == 0) {
                 return "[]";
