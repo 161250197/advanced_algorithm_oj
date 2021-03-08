@@ -21,6 +21,17 @@ public class Util {
         return builder.toString();
     }
 
+    private String stringArrToString(String[] strs) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[ " + strs[0]);
+        int arrLen = strs.length;
+        for (int i = 1; i < arrLen; i++) {
+            builder.append("," + strs[i]);
+        }
+        builder.append(" ]");
+        return builder.toString();
+    }
+
     private String createResultNumArrStr(int[] numArr) {
         StringBuilder builder = new StringBuilder();
         builder.append(numArr[0]);
