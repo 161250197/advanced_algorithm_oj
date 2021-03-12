@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     private Scanner scanner;
@@ -17,15 +19,18 @@ public class Main {
         String caseCountStr = this.scanner.nextLine();
         int caseCount = Integer.parseInt(caseCountStr);
         for (int i = 0; i < caseCount; i++) {
-            this.dealProblem();
+            this.find9DivisorNum();
         }
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
-            .append("test: " + this.test + ";\n")
+            .append("n: " + this.n + ";\n")
+            .append("count: " + this.count + ";\n")
+            .append("primeNumberList: " + this.primeNumberList + ";\n")
+            .append("primeNumberSquareList: " + this.primeNumberSquareList + ";\n")
+            .append("lastNum: " + this.lastNum + ";\n")
         ;
         return builder.toString();
     }
@@ -34,26 +39,77 @@ public class Main {
         System.out.println(this);
     }
 
-    // TODO 添加属性
-    String test = "test";
+    long n = -1;
+    int count = -1;
+    List<Integer> primeNumberList = null;
+    List<Integer> primeNumberSquareList = null;
+    int lastNum = -1;
 
-    // TODO 修改方法名称
-    private void dealProblem() {
+    private void find9DivisorNum() {
         loadData();
         calResult();
         printResult();
     }
 
     private void loadData() {
-        // TODO
+        this.n = Long.parseLong(this.scanner.nextLine());
+        this.count = 0;
+        this.primeNumberList = new ArrayList<>();
+        this.primeNumberSquareList = new ArrayList<>();
+        this.lastNum = 1;
     }
 
     private void calResult() {
-        // TODO
-        this.printData();
+        boolean found = true;
+        while (found) {
+            found = false;
+            int newPrimeNumber = this.getPrimeNumber();
+            int newPrimeNumberSquare = newPrimeNumber * newPrimeNumber;
+
+            if (Math.pow(newPrimeNumberSquare, 4) < this.n) {
+                this.addCount();
+                found = true;
+            }
+
+            for (int primeNumberSquare : this.primeNumberSquareList) {
+                if (newPrimeNumberSquare * primeNumberSquare < this.n) {
+                    this.addCount();
+                    found = true;
+                } else {
+                    break;
+                }
+            }
+
+            this.primeNumberList.add(newPrimeNumber);
+            this.primeNumberSquareList.add(newPrimeNumberSquare);
+
+            if (newPrimeNumber == 2) {
+                found = true;
+            }
+        }
+    }
+
+    private int getPrimeNumber() {
+        while (true) {
+            this.lastNum++;
+            boolean isPrime = true;
+            for (int primeNumber : primeNumberList) {
+                if (this.lastNum % primeNumber == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                return this.lastNum;
+            }
+        }
+    }
+
+    private void addCount() {
+        this.count++;
     }
 
     private void printResult() {
-        // TODO
+        System.out.println(this.count);
     }
 }
