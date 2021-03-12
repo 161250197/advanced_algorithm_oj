@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Util {
     class ArrToString<T> {
         String exec(T[] arr) {
@@ -35,6 +37,16 @@ public class Util {
             }
             builder.append("\n]");
             return builder.toString();
+        }
+    }
+
+    class ListToString<T> {
+        String exec(List<T> list) {
+            return list.toString()
+                .replace(", ", " ")
+                .replace("[", "")
+                .replace("]", "")
+            ;
         }
     }
 }
