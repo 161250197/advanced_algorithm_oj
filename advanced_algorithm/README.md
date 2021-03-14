@@ -19,7 +19,7 @@
 * questionId （如1-10）。
 
 ~~~
-node .\advanced_algorithm\folde  reator.jsrCreator.js 19 1-10
+node .\advanced_algorithm\folderCreator.js 19 1-10
 ~~~
 
 即可在对应的 contest 文件夹下新建对应的 question 文件夹，并将 template 目录下的模板文件 [Main.js](template/Main.java) 复制到该文件夹下，并生成空的 README 文件。
