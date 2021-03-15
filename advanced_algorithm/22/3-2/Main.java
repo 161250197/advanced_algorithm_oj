@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     private Scanner scanner;
@@ -17,15 +18,34 @@ public class Main {
         String caseCountStr = this.scanner.nextLine();
         int caseCount = Integer.parseInt(caseCountStr);
         for (int i = 0; i < caseCount; i++) {
-            this.dealProblem();
+            this.findKMin();
+        }
+    }
+    
+    class ArrToString<T> {
+        String exec(T[] arr) {
+            if (arr == null) {
+                return "null";
+            }
+            int arrLen = arr.length;
+            if (arrLen == 0) {
+                return "[]";
+            }
+            StringBuilder builder = new StringBuilder();
+            builder.append("[ " + arr[0]);
+            for (int i = 1; i < arrLen; i++) {
+                builder.append("," + arr[i]);
+            }
+            builder.append(" ]");
+            return builder.toString();
         }
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
-            .append("test: " + this.test + ";\n")
+            .append("ints: " + new ArrToString<Integer>().exec(this.ints) + ";\n")
+            .append("k:" + this.k + ";\n")
         ;
         return builder.toString();
     }
@@ -34,26 +54,32 @@ public class Main {
         System.out.println(this);
     }
 
-    // TODO 添加属性
-    String test = "test";
+    Integer[] ints = null;
+    int k = -1;
 
-    // TODO 修改方法名称
-    private void dealProblem() {
+    private void findKMin() {
         loadData();
         calResult();
         printResult();
     }
 
     private void loadData() {
-        // TODO
+        String[] intStrArr = this.scanner.nextLine().split(" ");
+        String[] rangeStrArr = this.scanner.nextLine().split(" ");
+        int start = Integer.parseInt(rangeStrArr[0]) - 1;
+        int length = Integer.parseInt(rangeStrArr[1]) - start;
+        this.ints = new Integer[length];
+        for (int i = 0; i < length; i++) {
+            this.ints[i] = Integer.parseInt(intStrArr[start + i]);
+        }
+        this.k = Integer.parseInt(this.scanner.nextLine());
     }
 
     private void calResult() {
-        // TODO
-        this.printData();
+        Arrays.sort(this.ints);
     }
 
     private void printResult() {
-        // TODO
+        System.out.println(this.ints[this.k - 1]);
     }
 }
