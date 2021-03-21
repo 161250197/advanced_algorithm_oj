@@ -32,3 +32,13 @@ For each test case print in new line the number of animals expected at the end o
 2
 5
 ~~~
+
+## Trick & Solutions
+
+1. `single integer N` 可能超出 2147483647，即使用 `Integer.parseInt` 转换时会出现 `Runtime Exception`；
+
+    使用 `Long.parseLong` 读取 `N` 。
+
+2. 使用叠加的 `O(N)` 算法会出现超时。
+
+    使用基于矩阵乘法的 `二分` ，将时间开销降低到 `O(logN)` 。
