@@ -110,7 +110,7 @@ public class Main {
             long q = this.qArr[i];
             score = this.calScore(q);
             this.printScore(score);
-        } 
+        }
     }
 
     private long calScore(long q) {
