@@ -32,3 +32,9 @@ For each test case in a new line print the desired output.
 51
 Not Possible
 ~~~
+
+## Trick & Solutions
+
+1. `0` 不能被任何数字整除。
+
+    添加对于输入为 `0` 时的特判。
