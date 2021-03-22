@@ -4,7 +4,7 @@
 
 Given an array of positive integers and many queries for divisibility. In every query Q[i], we are given an integer K , we need to count all elements in the array which are perfectly divisible by K.
 
-Constraints:1<=T<=1001<=N,M<=1051<=A[i],Q[i]<=105
+Constraints:1<=T<=100;1<=N,M<=105;1<=A[i],Q[i]<=105
 
 ## Input
 
@@ -34,3 +34,9 @@ For each test case,In new line print the required count for each query Q[i].
 3 3 2
 2 2
 ~~~
+
+## Trick & Solutions
+
+1. `0` 不可以被任何数字整除；
+
+2. 当 `Q[i]` 为 0 时可以进行特判。
