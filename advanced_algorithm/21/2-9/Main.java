@@ -63,7 +63,6 @@ public class Main {
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
             .append("painterCount: " + this.painterCount + ";\n")
