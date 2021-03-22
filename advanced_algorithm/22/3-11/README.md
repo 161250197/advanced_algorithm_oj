@@ -26,3 +26,7 @@ Given a string ‘str’ of digits, find length of the longest substring of ‘s
 ~~~
 4
 ~~~
+
+## Trick & Solutions
+
+1. 使用 `Integer` 类型时会出现超出常量池预存的数字，导致使用 `==` 结果不合预期。
