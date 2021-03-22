@@ -28,3 +28,7 @@ AABAACAADAABAABA,AABA
 10
 0 9 12
 ~~~
+
+## Trick & Solutions
+
+1. 可以试着用 `kmp算法` 解决，暴力会不会超时没有测试。
