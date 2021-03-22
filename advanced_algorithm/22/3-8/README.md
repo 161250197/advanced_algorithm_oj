@@ -4,8 +4,9 @@
 
 In a given cartesian plane, there are N points. We need to find the Number of Pairs of points(A,B) such that
 
-Point A and Point B do not coincide.
-Manhattan Distance and the Euclidean Distance between the points should be equal.
+1. Point A and Point B do not coincide.
+
+2. Manhattan Distance and the Euclidean Distance between the points should be equal.
 
 Note : Pair of 2 points(A,B) is considered same as Pair of 2 points(B,A).
 

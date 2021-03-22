@@ -1,4 +1,8 @@
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Main {
     private Scanner scanner;
@@ -17,15 +21,14 @@ public class Main {
         String caseCountStr = this.scanner.nextLine();
         int caseCount = Integer.parseInt(caseCountStr);
         for (int i = 0; i < caseCount; i++) {
-            this.dealProblem();
+            this.distanceProblem();
         }
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
-            .append("test: " + this.test + ";\n")
+            .append("pairCount: " + this.pairCount + ";\n")
         ;
         return builder.toString();
     }
@@ -34,26 +37,51 @@ public class Main {
         System.out.println(this);
     }
 
-    // TODO 添加属性
-    String test = "test";
+    int pairCount;
 
-    // TODO 修改方法名称
-    private void dealProblem() {
+    private void distanceProblem() {
         loadData();
-        calResult();
         printResult();
     }
 
     private void loadData() {
-        // TODO
-    }
+        int pairCount = 0;
+        int pointCount = Integer.parseInt(this.scanner.nextLine());
 
-    private void calResult() {
-        // TODO
-        this.printData();
+        Set<String> pointStrSet = new HashSet<>();
+        Map<String, Integer> xToCountMap = new HashMap<>();
+        Map<String, Integer> yToCountMap = new HashMap<>();
+        for (int i = 0; i < pointCount; i++) {
+            String xy = this.scanner.nextLine();
+            if (!pointStrSet.contains(xy)) {
+                String[] xyArr = xy.split(" ");
+                String x = xyArr[0];
+                String y = xyArr[1];
+                
+                int xCount = 1;
+                if (xToCountMap.containsKey(x)) {
+                    xCount = xToCountMap.get(x);
+                    pairCount += xCount;
+                    xCount++;
+                }
+                xToCountMap.put(x, xCount);
+                
+                int yCount = 1;
+                if (yToCountMap.containsKey(y)) {
+                    yCount = yToCountMap.get(y);
+                    pairCount += yCount;
+                    yCount++;
+                }
+                yToCountMap.put(y, yCount);
+
+                pointStrSet.add(xy);
+            }
+        }
+
+        this.pairCount = pairCount;
     }
 
     private void printResult() {
-        // TODO
+        System.out.println(this.pairCount);
     }
 }
