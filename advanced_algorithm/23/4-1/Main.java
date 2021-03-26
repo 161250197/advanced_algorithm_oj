@@ -17,15 +17,56 @@ public class Main {
         String caseCountStr = this.scanner.nextLine();
         int caseCount = Integer.parseInt(caseCountStr);
         for (int i = 0; i < caseCount; i++) {
-            this.dealProblem();
+            this.findMinOverallPoint();
+        }
+    }
+
+    class ArrToString<T> {
+        String exec(T[] arr) {
+            if (arr == null) {
+                return "null";
+            }
+            int arrLen = arr.length;
+            if (arrLen == 0) {
+                return "[]";
+            }
+            StringBuilder builder = new StringBuilder();
+            builder.append("[ " + arr[0]);
+            for (int i = 1; i < arrLen; i++) {
+                builder.append("," + arr[i]);
+            }
+            builder.append(" ]");
+            return builder.toString();
+        }
+    }
+
+    class MatrixToString<T> {
+        String exec(T[][] matrix) {
+            if (matrix == null) {
+                return "null";
+            }
+            int arrLen = matrix.length;
+            if (arrLen == 0) {
+                return "[]";
+            }
+            ArrToString arrToString = new ArrToString<T>();
+            StringBuilder builder = new StringBuilder();
+            builder.append("[\n" + arrToString.exec(matrix[0]));
+            for (int i = 1; i < arrLen; i++) {
+                builder.append(",\n" + arrToString.exec(matrix[i]));
+            }
+            builder.append("\n]");
+            return builder.toString();
         }
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
-            .append("test: " + this.test + ";\n")
+            .append("row: " + this.row + ";\n")
+            .append("col: " + this.col + ";\n")
+            .append("matrix: " + new MatrixToString<Integer>().exec(this.matrix) + ";\n")
+            .append("minMatrix: " + new MatrixToString<Integer>().exec(this.minMatrix) + ";\n")
         ;
         return builder.toString();
     }
@@ -34,26 +75,62 @@ public class Main {
         System.out.println(this);
     }
 
-    // TODO 添加属性
-    String test = "test";
+    int row;
+    int col;
+    Integer[][] matrix;
+    Integer[][] minMatrix;
 
-    // TODO 修改方法名称
-    private void dealProblem() {
+    private void findMinOverallPoint() {
         loadData();
         calResult();
         printResult();
     }
 
     private void loadData() {
-        // TODO
+        String[] rowColStrs = this.scanner.nextLine().split(" ");
+        this.row = Integer.parseInt(rowColStrs[0]);
+        this.col = Integer.parseInt(rowColStrs[1]);
+
+        this.matrix = new Integer[this.row][];
+        this.minMatrix = new Integer[this.row][];
+        String[] valStrs = this.scanner.nextLine().split(" ");
+        int i = 0;
+        for (int r = 0; r < this.row; r++) {
+            this.matrix[r] = new Integer[this.col];
+            this.minMatrix[r] = new Integer[this.col];
+            for (int c = 0; c < this.col; c++) {
+                this.matrix[r][c] = Integer.parseInt(valStrs[i]);
+                i++;
+            }
+        }
     }
 
     private void calResult() {
-        // TODO
-        this.printData();
+        int lastRow = this.row - 1;
+        int lastCol = this.col - 1;
+        this.minMatrix[lastRow][lastCol] = 1 - this.matrix[lastRow][lastCol];
+        // 初始化最后一列
+        for (int c = lastCol - 1; c >= 0; c--) {
+            this.minMatrix[lastRow][c] = Math.max(1, this.minMatrix[lastRow][c + 1]) - this.matrix[lastRow][c];
+        }
+        // 初始化最后一行
+        for (int r = lastRow - 1; r >= 0; r--) {
+            this.minMatrix[r][lastCol] = Math.max(1, this.minMatrix[r + 1][lastCol]) - this.matrix[r][lastCol];
+        }
+        for (int r = lastRow - 1; r >= 0; r--) {
+            for (int c = lastCol - 1; c >= 0; c--) {
+                this.minMatrix[r][c] = Math.max(
+                    1,
+                    Math.min(
+                        this.minMatrix[r + 1][c],
+                        this.minMatrix[r][c + 1]
+                    )
+                ) - this.matrix[r][c];
+            }
+        }
     }
 
     private void printResult() {
-        // TODO
+        System.out.println(this.minMatrix[0][0]);
     }
 }
