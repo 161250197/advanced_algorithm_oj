@@ -17,15 +17,14 @@ public class Main {
         String caseCountStr = this.scanner.nextLine();
         int caseCount = Integer.parseInt(caseCountStr);
         for (int i = 0; i < caseCount; i++) {
-            this.dealProblem();
+            this.countOneInMatrix();
         }
     }
     
     public String toString() {
-        // TODO 修改属性信息
         StringBuilder builder = new StringBuilder();
         builder
-            .append("test: " + this.test + ";\n")
+            .append("n: " + this.n + ";\n")
         ;
         return builder.toString();
     }
@@ -34,26 +33,41 @@ public class Main {
         System.out.println(this);
     }
 
-    // TODO 添加属性
-    String test = "test";
+    boolean[] isOdd = { false, false, true, true, true, false, true};
+    int n;
+    int count;
 
-    // TODO 修改方法名称
-    private void dealProblem() {
+    private void countOneInMatrix() {
         loadData();
         calResult();
         printResult();
     }
 
     private void loadData() {
-        // TODO
+        this.n = Integer.parseInt(this.scanner.nextLine());
+        this.count = 0;
     }
 
     private void calResult() {
-        // TODO
-        this.printData();
+        for (int i = 1; i <= this.n; i++) {
+            if (this.isOdd[getIsOddIndex(i, i)]) {
+                this.count = this.count + 1;
+            }
+            for (int j = i + 1; j <= this.n; j++) {
+                if (this.isOdd[getIsOddIndex(i, j)]) {
+                    // 上半和下半都加 1
+                    this.count = this.count + 2;
+                }
+            }
+        }
+    }
+
+    private int getIsOddIndex(int i, int j) {
+        int ij = (i * j) % 7;
+        return (ij * ij * ij) % 7;
     }
 
     private void printResult() {
-        // TODO
+        System.out.println(this.count);
     }
 }

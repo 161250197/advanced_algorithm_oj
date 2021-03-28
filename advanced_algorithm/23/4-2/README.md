@@ -44,3 +44,25 @@ For each test case, output a single Integer -the taste value fo the dish of size
 ~~~
 0
 ~~~
+
+## Trick & Solutions
+
+1. isOdd 规律
+
+    C(0) = 2，C(1) = 0，C(2) = 1，C(3) = 7
+
+    isOdd(0) = false，isOdd(1) = false，isOdd(2) = true，isOdd(3) = true
+
+    C(n)= 3C(i-1) + 4C(i-2) + 5C(i-3) + 6C(i-4)
+
+    isOdd(n) = isOdd(i-1) ^ idOss(i-3)
+
+    可以发现 idOdd 为 `false false true ture true false true` 的规律循环。
+
+2. 计算折半
+
+    计算矩阵的所有 (i*j)^3 可以只计算 `上半三角区域`
+
+3. 注意下标
+
+    下标是从 `1` 开始到 `n` 的
