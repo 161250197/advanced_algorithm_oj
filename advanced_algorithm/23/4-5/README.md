@@ -31,3 +31,9 @@ Constraints:1 <= T <= 10，1 <= N <= 100000 Cost of each vegetable(brinjal/carro
 ~~~
 52
 ~~~
+
+## Trick & Solutions
+
+只需要维护在当前商铺中，如果买某一种蔬菜，加上之前所有商品所需要花费的最小花销：
+
+* 花销 = 在当前买这种蔬菜的花销 + 在上一家商铺中买除了这种蔬菜之外的最小总花销
