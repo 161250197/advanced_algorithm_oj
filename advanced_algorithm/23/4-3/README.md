@@ -6,7 +6,7 @@ Mike is a lawyer with the gift of photographic memory. He is so good with it tha
 
 The elements present in the subset should not have any digit in common.
 
-Note: Subset {12, 36, 45} does not have any digit in common and Subset {12, 22, 35} have digits in common.Rachael find it difficult to win the challenge and is asking your help. Can youhelp her out in winning this challenge?
+Note: Subset {12, 36, 45} does not have any digit in common and Subset {12, 22, 35} have digits in common.Rachael find it difficult to win the challenge and is asking your help. Can you help him out in winning this challenge?
 
 ## Input
 
@@ -39,3 +39,12 @@ Corresponding to each test case, print output in the new line.
 ~~~
 57
 ~~~
+
+## Trick & Solutions
+
+使用 `digitUsed` 数组记录各位数字的使用情况。
+
+可以使用 dp 二维数组存储计算过的情况来消除重复计算：
+
+* 一维为当前正在检查的数字的下标；
+* 另一维为 `digitUsed` 的情况，可以使用十位的二进制值来进行映射（0 - 1024）。
