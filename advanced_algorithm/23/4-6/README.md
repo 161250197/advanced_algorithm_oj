@@ -34,3 +34,9 @@ For each test case, the output is an integer displaying the maximum sum of selec
 4
 10
 ~~~
+
+## Trick & Solutions
+
+读入数组时使用 `map` 存储数字和出现次数的映射。
+
+对数组排序，从大到小遍历。
