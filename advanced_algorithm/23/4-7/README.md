@@ -27,3 +27,12 @@ Given an array, the task is to complete the function which finds the maximum sum
 ~~~
 11
 ~~~
+
+## Trick & Solutions
+
+注意：`空集` 不符合题目要求！
+
+遍历查找所有负数的下标。
+
+* 如果没有找到，直接返回数组和；
+* 对每个下标进行移除，使用贪心查找此时的最大数组和。
