@@ -34,3 +34,9 @@ Print a single integer representing the maximum tip money they would receive.
 ~~~
 21
 ~~~
+
+## Trick & Solutions
+
+先不考虑两个服务员能够处理的订单上限，遍历得出理想最多的小费数，以及此时两人分别需要处理的订单数（如果两人的小费一样，则相当于没有增加特定人的需要处理数，谁有空谁做）。
+
+此时检查，如果超出了某人的处理能力，则将影响最小的几单交给另一位处理。
