@@ -34,3 +34,7 @@ For each test case output a single integer depecting the minimum cost to reach t
 327
 63
 ~~~
+
+## Trick & Solutions
+
+提前结束的广度优先搜索。
